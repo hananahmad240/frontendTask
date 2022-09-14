@@ -1,23 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+
+import List from './components/List'
+import Todo from './components/Todo'
+
+import "primereact/resources/themes/lara-light-indigo/theme.css";
+import "primereact/resources/primereact.min.css";
+import "primeicons/primeicons.css";
+import "primeflex/primeflex.css";
+
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react';
+
+import { getUsers } from './store/action/users'
 
 function App() {
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(
+      getUsers({
+        id:"12"
+      })
+    )
+  }, [])
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="grid">
+        <div className="col">
+          <List />
+        </div>
+
+        <div className="col">
+          <Todo />
+        </div>
+      </div>
+
+
+
     </div>
   );
 }
